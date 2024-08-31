@@ -1,93 +1,98 @@
-# **AWS Cloud Architecture Project**
 
-## **Introduction**
+---
+
+**AWS CLOUD ARCHITECTURE PROJECT**
+
+**INTRODUCTION**  
 This project intends to provide confidentiality, integrity, and availability of data stored in the AWS cloud environment. It uses a 3-tier architecture at web application and database spread across 2 availability zones. It uses a virtual private cloud for creating an isolated environment that will take users' requests and perform tasks accordingly.
 
 ![Architecture Diagram](https://drive.google.com/uc?export=view&id=1n0pXy59k7WQZV7GnZevYxOmHUiUl8Y3j)
 
-## **VPC (Virtual Private Cloud)**
+**VPC (VIRTUAL PRIVATE CLOUD)**  
 A Virtual Private Cloud (VPC) is a virtual network infrastructure provided by cloud service providers, such as Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure. It allows users to create isolated networks within the cloud environment where they can launch resources such as virtual machines, databases, and containers.
 
-### **Use Case**
+**USE CASE**  
 In this project, VPC is used to provide a virtual network infrastructure to host the website architecture. Incoming requests first come to this and are then routed to either of the two public subnets. It is used in place of a private cloud because of its wide range of functionalities as well as scalability.
 
-## **Subnets**
+**SUBNETS**  
 A subnet is a segmented portion of the IP address range of the VPC. Subnets are used to organize and manage the resources within the VPC.
 
 - **Public subnet**: Example usage is web servers.
 - **Private subnet**: Example usage is database servers.
 
-### **Use Case**
+**USE CASE**  
 Subnets are created to host NAT gateways and EC2 instances as shown in the diagram. Since this is a 3-tier architecture, we have 2 public subnets and 4 private subnets. Public subnets are for web servers, and private subnets are for application and database servers respectively.
 
-## **NAT Gateway**
+**NAT GATEWAY**  
 A NAT Gateway (Network Address Translation Gateway) is a managed network service that enables resources in a private subnet to access the internet while remaining private and secure.
 
-### **Use Case**
+**USE CASE**  
 In this project, NAT gateways are used for communication between the private subnets and the outside internet for fetching and receiving updates. NAT gateways are created in public subnets and in different regions.
 
-## **Route Tables**
+**ROUTE TABLES**  
 Route tables in a VPC determine how network traffic is directed within the VPC. They define the paths for traffic to reach its destination, whether it's within the VPC, to a specific subnet, or outside to the internet via an internet gateway or a NAT gateway.
 
-### **Use Case**
+**USE CASE**  
 In this project, route tables keep track of ingoing and outgoing traffic and monitor how communication will pan out between different subnets.
 
-## **Internet Gateway**
+**INTERNET GATEWAY**  
 An internet gateway is a component in a VPC that allows communication between instances in the VPC and the internet. It serves as a target for internet-bound traffic and facilitates bidirectional communication.
 
-### **Use Case**
+**USE CASE**  
 In this project, the internet gateway is used for communication between the VPC and the internet (i.e., the user's request). It tracks user requests and sends them to the VPC and vice versa.
 
-## **Application Load Balancer (ALB)**
+**APPLICATION LOAD BALANCER (ALB)**  
 An Application Load Balancer (ALB) is a service provided by AWS that distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses, within one or more availability zones.
 
-### **Use Case**
+**USE CASE**  
 In this project, ALB is used to distribute user requests according to the load. It helps prevent overloading on one EC2 server, thus preventing downtime of the site.
 
-## **EC2 Instances**
+**EC2 INSTANCES**  
 EC2 is a web service that provides resizable compute capacity in the cloud. It allows users to launch and manage virtual servers, known as instances, to run applications and workloads.
 
-### **Use Case**
+**USE CASE**  
 EC2 instances are used to host the application servers. There are 2 EC2 instances in the project for failure prevention and backup. They are used to host the site and perform operations.
 
-## **Route 53**
+**ROUTE 53**  
 Route 53 is a scalable and highly available Domain Name System (DNS) web service provided by AWS. It enables users to route end-users to internet applications by translating human-readable domain names into IP addresses.
 
-### **Use Case**
+**USE CASE**  
 In this project, Route 53 is used to manage DNS and provide high availability and low latency.
 
-## **Auto Scaling**
+**AUTO SCALING**  
 Auto Scaling is a feature of AWS that automatically adjusts the number of EC2 instances in a group based on demand. It helps ensure that the desired number of instances are available to handle incoming traffic, optimizing performance and cost.
 
-### **Use Case**
+**USE CASE**  
 Auto Scaling is used in this project to prevent EC2 instances from shutting off completely when they can’t handle the load. Auto Scaling will help to automatically spin up or down EC2 instances based on demand.
 
-## **RDS (Relational Database Service)**
+**RDS (RELATIONAL DATABASE SERVICE)**  
 RDS is a managed database service that simplifies the setup, operation, and scaling of relational databases in the cloud. It supports several database engines such as MySQL and PostgreSQL.
 
-### **Use Case**
+**USE CASE**  
 RDS is used in this project to store data received and transfer it easily without any problems. There are 2 database servers: one is the main server, and the other is a backup.
 
-## **Amazon GuardDuty**
+**AMAZON GUARD DUTY**  
 Amazon GuardDuty enhances security by detecting threats.
 
-### **Use Case**
+**USE CASE**  
 Imagine an unauthorized user attempting to access your EC2 instances or suspicious traffic patterns. GuardDuty analyzes logs and network data to identify such behavior. When it detects potential threats (e.g., port scanning, compromised instances), it sends alerts. GuardDuty helps protect your architecture from malicious activity.
 
-## **Amazon Shield**
+**AMAZON SHIELD**  
 Amazon Shield protects against DDoS attacks.
 
-### **Use Case**
+**USE CASE**  
 Suppose your web application experiences a sudden surge in traffic due to a DDoS attack. Shield automatically detects the attack and mitigates it by rerouting traffic or absorbing it. Shield ensures the availability of your web servers during such attacks.
 
-## **Amazon CloudTrail**
+**AMAZON CLOUDTRAIL**  
 Amazon CloudTrail aids in auditing and compliance.
 
-### **Use Case**
+**USE CASE**  
 Let’s say you need to track who accessed your RDS database or modified security groups. CloudTrail records API calls, providing an audit trail. Compliance requirements often mandate detailed logging, and CloudTrail fulfills that need.
 
-## **Amazon CloudWatch**
+**AMAZON CLOUDWATCH**  
 Amazon CloudWatch provides monitoring and insights.
 
-### **Use Case**
+**USE CASE**  
 CloudWatch collects metrics (e.g., CPU usage, disk I/O) and allows you to set alarms. CloudWatch ensures optimal resource utilization and provides insights into your architecture's performance.
+
+---
