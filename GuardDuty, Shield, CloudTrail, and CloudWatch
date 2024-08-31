@@ -1,0 +1,21 @@
+resource "aws_guardduty_detector" "main" {
+  enable = true
+}
+
+resource "aws_shield_protection" "my_protection" {
+  name        = "my-protection"
+  resource_arn = aws_cloudfront_distribution.s3_distribution.arn
+}
+
+resource "aws_cloudtrail" "main" {
+  name                          = "main-cloudtrail"
+  s3_bucket_name                = aws_s3_bucket.trail_bucket.bucket
+  include_global_service_events = true
+  is_multi_region_trail         = true
+  enable_log_file_validation    = true
+}
+
+resource "aws_cloudwatch_log_group" "main" {
+  name              = "/aws/lambda/my-function"
+  retention_in_days = 14
+}
