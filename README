@@ -2,7 +2,7 @@
 
 AWS CLOUD ARCHITECTURE PROJECT
 
-![Architecture Diagram](https://drive.google.com/uc?export=view&id=1n0pXy59k7WQZV7GnZevYxOmHUiUl8Y3j)
+
 
 Introduction: This project intends to provide confidentiality, integrity, and availability of data stored in the AWS cloud environment. It uses a 3-tier architecture at web application and database spread across 2 availability zone. It uses a virtual private cloud for creating an isolated environment which will take users request and perform tasks accordingly.
 
@@ -54,7 +54,3 @@ Use Case: CloudWatch provides monitoring and insights:
 CloudWatch collects metrics (CPU, disk I/O, etc.) and allows you to set alarms. CloudWatch ensures optimal resource utilization.
 
 
-
-Project Video link:
-
-https://drive.google.com/drive/folders/1DfMtZODzv7zjqSQNTAysYNqtC15PkCZQ?usp=sharing
