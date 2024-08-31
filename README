@@ -1,1 +1,58 @@
-WMNM
+Introduction: This project intends to provide confidentiality, integrity, and availability of data stored in the AWS cloud environment. It uses a 3-tier architecture at web application and database spread across 2 availability zone. It uses a virtual private cloud for creating an isolated environment which will take users request and perform tasks accordingly.
+
+
+
+
+
+
+
+
+VPC: A Virtual Private Cloud (VPC) is a virtual network infrastructure provided by cloud service providers, such as Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure. It allows users to create isolated networks within the cloud environment where they can launch resources such as virtual machines, databases, and containers.
+Use case : In this project VPC is used to provide a virtual network infrastructure to host website architecture incoming request firstly come to this and then are routed to either of the two public subnet it is used in place of private cloud because of it wide range of functionalities as well as scalability.
+
+Subnet: a subnet is a segmented portion of the IP address range of the VPC. Subnets are used to organize and manage the resources within the VPC.
+Public subnet example is web servers.
+Private subnet example is database servers.
+Use case: Subnets are created to Host Nat gateway and ec2 instance as shown in the diagram since this is a 3-tier architecture we have 2 public subnet and 4 private subnet. Public subnet are for web servers and private subnets are application and database servers respectively.
+
+Nat gateway: A NAT Gateway, or Network Address Translation Gateway, is a managed network service provided by cloud service providers like Amazon Web Services (AWS) that enables resources in a private subnet to access the internet while remaining private and secure.
+Use case: In this project Nat gateway are used for communication of private subnet with outside internet for fetching and receiving updates. Nat gateway are created in public subnet and in different region.
+
+Route Tables: Route tables in a VPC determine how network traffic is directed within the VPC. They define the paths for traffic to reach its destination, whether it's within the VPC, to a specific subnet, or outside to the internet via an internet gateway or a NAT gateway.
+Use Case: In this project route table keep a track of ingoing and outgoing traffic and monitor how the communication will pan out between different subnets.
+
+Internet gateway: An internet gateway is a component in a VPC that allows communication between instances in the VPC and the internet. It serves as a target for internet-bound traffic and facilitates bidirectional communication.
+Use Case: It is used in this project for communication between VPC and the internet that is the user request it tracks user request and send it to VPC and vice versa. 
+
+Application Load Balancer: An Application Load Balancer (ALB) is a service provided by AWS that distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses, within one or more availability zones.
+Use Case: In this project alb is used to distribute user incoming request according to the load it helps to never increase load on one ec2 server and thus prevent downtime of the site.
+
+Ec2: EC2 is a web service that provides resizable compute capacity in the cloud. It allows users to launch and manage virtual servers, known as instances, to run applications and workloads.
+Use Case: Ec2 are used to host application server there are 2 ec2 instance in the project for failure prevention and backup they are used to host the site and to do operations.
+
+
+Route 53: Route 53 is a scalable and highly available Domain Name System (DNS) web service provided by AWS. It enables users to route end users to internet applications by translating human-readable domain names into IP addresses.
+Use Case: In this project route 53 is used to manage dns and provide high availability and low latency.
+
+Autoscaling: Autoscaling is a feature of AWS that automatically adjusts the number of EC2 instances in a group based on demand. It helps ensure that the desired number of instances are available to handle incoming traffic, optimizing performance and cost. 
+Use Case: Autoscaling is used in this project to prevent ec2 instance from shutting off completely when they couldn’t hold the load autoscaling will help to auto spin ec2 instance based on the demand it can spin up or down based on the traffic and load.
+RDS: RDS is a managed database service that simplifies the setup, operation, and scaling of relational databases in the cloud. It supports several database engines such as MySQL, PostgreSQL.
+Use Case: Rds is used in the project to store data received and transfer it easily without any problem. There are 2 database server one is main and another one is backup.
+
+Amazon Guard Duty:
+Use Case: Guard Duty enhances security by detecting threats:
+Imagine an unauthorized user attempting to access your EC2 instances or suspicious traffic patterns. Guard Duty analyzes logs and network data to identify such behavior. When it detects potential threats (e.g., port scanning, compromised instances), it sends alerts. Guard Duty helps protect your architecture from malicious activity.
+Amazon Shield:
+Use Case: Shield protects against DDoS attacks:
+Suppose your web application experiences a sudden surge in traffic due to a DDoS attack. Shield automatically detects the attack and mitigates it by rerouting traffic or absorbing it. Shield ensures the availability of your web servers during such attacks.
+Amazon CloudTrail:
+Use Case: CloudTrail aids in auditing and compliance:
+Let’s say you need to track who accessed your RDS database or modified security groups. CloudTrail records API calls, providing an audit trail. Compliance requirements often mandate detailed logging, and CloudTrail fulfills that need.
+
+
+
+
+Amazon CloudWatch:
+Use Case: CloudWatch provides monitoring and insights:
+CloudWatch collects metrics (CPU, disk I/O, etc.) and allows you to set alarms. CloudWatch ensures optimal resource utilization.
+
